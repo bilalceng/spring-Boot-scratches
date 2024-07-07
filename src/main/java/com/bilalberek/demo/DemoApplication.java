@@ -13,9 +13,12 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		var context = SpringApplication.run(DemoApplication.class, args);
 		//Object studentOne = context.getBean("provideStudent");
-		Student studentOne = context.getBean(Student.class);
+		Student studentOne = context.getBean("provideStudent", Student.class);
+		Student studentTwo  = context.getBean("emptyConstStudent", Student.class);
 
-
+		System.out.println(((Student) studentTwo).getName());
+		System.out.println(((Student) studentTwo).getSurname());
+		System.out.println(((Student) studentTwo).getStudentId());
 
 		System.out.println(((Student) studentOne).getName());
 		System.out.println(((Student) studentOne).getSurname());
