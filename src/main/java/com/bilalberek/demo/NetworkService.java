@@ -6,18 +6,31 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class NetworkService {
+
+    private  Student student;
+
+    // field injection.
+
+    /**
+     *     @Autowired
+     *     @Qualifier("provideStudent2")
+     *    private  Student student;
+     */
+
+     // Constructor injection.
+    /**
+     *        public NetworkService(Student student) {
+     *              this.student = student;
+     *          }
+     *
+     */
+
     @Autowired
-    @Qualifier("provideStudent2")// field injection.
-   private  Student student;
-
-     // Constructor injection
-
-       public NetworkService(Student student) {
-             this.student = student;
-         }
-
+    public void injectDependencies(@Qualifier("provideStudent3") Student student){
+        this.student = student;
+    }
 
     public String SayHelloToTheStudent(){
-        return "hello" + student.getName();
+        return "hello " + student.getName();
     }
 }
