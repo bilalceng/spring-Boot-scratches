@@ -1,74 +1,37 @@
 package com.bilalberek.demo;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.env.Environment;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.stereotype.Service;
 
 @Service
+@PropertySources({
+        @PropertySource("classpath:custom.properties"),
+        @PropertySource("classpath:custom2.properties")
+})
 public class NetworkService {
+    @Value("${my.property}")
+    private  String  myProperty;
 
-    Environment environment;
+    @Value("${my.property2}")
+    private String myProperty2;
 
-    private  Student student;
-
-    // field injection.
-
-    /**
-     *     @Autowired
-     *     @Qualifier("provideStudent2")
-     *    private  Student student;
-     */
-
-     // Constructor injection.
-            @Autowired
-             public NetworkService(@Qualifier("provideStudent3") Student student) {
-                   this.student = student;
-               }
+    @Value("${my.integerProperty.int}")
+    private int intProperty;
 
 
-
-    // method injection
-    /**
-     *     @Autowired
-     *     public void injectDependencies(@Qualifier("provideStudent3") Student student){
-     *         this.student = student;
-     *     }
-     */
-
-    /**
-     *  //setter injection.
-     *     @Autowired
-     *     public void setStudent(@Qualifier("provideStudent3") Student student) {
-     *         this.student = student;
-     *     }
-     *
-     */
-
-    public String SayHelloToTheStudent(){
-             return "hello " + student.getName();
-    }
-    @Autowired
-    public void setEnvironment(Environment environment) {
-        this.environment = environment;
-
+    public String getMyProperty() {
+        return myProperty;
     }
 
-    public Environment getEnvironment() {
-        return environment;
+    public String getMyProperty2() {
+        return myProperty2;
     }
 
-    public String getOsName(){
-        return environment.getProperty("os.name");
+    public int getIntProperty() {
+        return intProperty;
     }
 
-    public String readProperty(){
-        return environment.getProperty("my.custom.property");
-    }
-
-    public String getJavaVersion(){
-        return environment.getProperty("java.version");
-    }
-
-    // Always prefer constructor injection!!!
 }
