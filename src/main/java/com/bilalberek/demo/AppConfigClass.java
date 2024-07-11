@@ -21,3 +21,6 @@ public class AppConfigClass {
     public Student provideStudent3(){ return  new Student("Bilal", "Berek", 34345453); }
 
 }
+
+
+

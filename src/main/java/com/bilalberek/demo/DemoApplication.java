@@ -17,6 +17,9 @@ public class DemoApplication {
 		//Object studentOne = context.getBean("provideStudent");
 
 		NetworkService service = context.getBean(NetworkService.class);
+		System.out.println(service.getOsName());
+		System.out.println(service.getJavaVersion());
+		System.out.println(service.readProperty());
 
 
 		System.out.println(service.SayHelloToTheStudent()); // HelloMehmet
