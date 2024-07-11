@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-@Component("emptyConstStudent") // with component keyword the Student class behave like bean and when call  it return empty constructor.
+//@Component("emptyConstStudent") // with component keyword the Student class behave like bean and when call  it return empty constructor.
 // can be used also @Service
 // can be used also @Repository
 // @Repository, @Service, @Component annotations used for markdown class or object as spring bean.
