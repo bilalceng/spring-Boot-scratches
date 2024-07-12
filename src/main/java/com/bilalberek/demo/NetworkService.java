@@ -1,41 +1,43 @@
 package com.bilalberek.demo;
 
-
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
 import org.springframework.stereotype.Service;
 
 @Service
-@PropertySources({
-        @PropertySource("classpath:custom.properties"),
-        @PropertySource("classpath:custom2.properties")
-})
 public class NetworkService {
-    @Value("${my.property}")
-    private  String  myProperty;
 
-    @Value("${my.property2}")
-    private String myProperty2;
+    @Value("${my.custom.property}")
+    private String myCustomProperty ;
 
-    @Value("${my.integerProperty.int}")
-    private Integer intProperty;  // Java can cast the value come from .properties file to  the type declared
-                                  // so be aware of wht type you declared the variable and its corresponding value
-                                  // in the .properties file.
-                                  // Both of them must be same type!!!  do this:  my.integerProperty.int=2345 do not make like this: my.integerProperty.int=2345odeıueıeu
-                                  // it will give error.
+    @Value("${my.custom.id.int}")
+    private Integer myCustomId;
 
+    @Value("${my.custom.weight.double}")
+    private Double myCustomWeight;
 
-    public String getMyProperty() {
-        return myProperty;
+    @Value("${my.custom.height.double}")
+    private Double  myCustomHeight;
+
+    @Value("${my.custom.special.dev}")
+    private Integer myCustomSpecialDev;
+
+    public Double getMyCustomHeight() {
+        return myCustomHeight;
     }
 
-    public String getMyProperty2() {
-        return myProperty2;
+    public Double getMyCustomWeight() {
+        return myCustomWeight;
     }
 
-    public int getIntProperty() {
-        return intProperty;
+    public Integer getMyCustomId() {
+        return myCustomId;
     }
 
+    public String getMyCustomProperty() {
+        return myCustomProperty;
+    }
+
+    public Integer getMyCustomSpecialDev() {
+        return myCustomSpecialDev;
+    }
 }
