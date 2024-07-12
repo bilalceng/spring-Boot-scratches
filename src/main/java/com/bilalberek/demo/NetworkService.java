@@ -19,7 +19,11 @@ public class NetworkService {
     private String myProperty2;
 
     @Value("${my.integerProperty.int}")
-    private int intProperty;
+    private Integer intProperty;  // Java can cast the value come from .properties file to  the type declared
+                                  // so be aware of wht type you declared the variable and its corresponding value
+                                  // in the .properties file.
+                                  // Both of them must be same type!!!  do this:  my.integerProperty.int=2345 do not make like this: my.integerProperty.int=2345odeıueıeu
+                                  // it will give error.
 
 
     public String getMyProperty() {
