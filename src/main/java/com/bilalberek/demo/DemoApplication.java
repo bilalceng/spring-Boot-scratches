@@ -18,15 +18,7 @@ public class DemoApplication {
 		app.setDefaultProperties(Collections.singletonMap("spring.profiles.active","dev"));
 		app.setDefaultProperties(Collections.singletonMap("spring.profiles.active","test"));
 		var context = app.run(args);
-		NetworkService service = context.getBean(NetworkService.class);
-		Student student = context.getBean(Student.class);
-
-		System.out.println(student.getName());
-		System.out.println(service.getMyCustomHeight());
-		System.out.println(service.getMyCustomId());
-		System.out.println(service.getMyCustomWeight());
-		System.out.println(service.getMyCustomProperty());
-		System.out.println(service.getMyCustomSpecialDev());
+	
 	}
 
 
