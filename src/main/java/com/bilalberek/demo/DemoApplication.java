@@ -15,8 +15,6 @@ public class DemoApplication {
 
 	public static void main(String[] args) {
 		var app = new SpringApplication(DemoApplication.class);
-		app.setDefaultProperties(Collections.singletonMap("spring.profiles.active","dev"));
-		app.setDefaultProperties(Collections.singletonMap("spring.profiles.active","test"));
 		var context = app.run(args);
 	
 	}
