@@ -7,7 +7,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create  # Controls the schema generation strategy
+      ddl-auto: update  # Controls the schema generation strategy
     show-sql: true
     properties:
       hibernate:
