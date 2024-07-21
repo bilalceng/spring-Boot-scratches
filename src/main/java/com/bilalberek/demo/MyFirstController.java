@@ -137,7 +137,7 @@ public class MyFirstController {
     public List<Person> findStudentById(
             @PathVariable("first-name") String name
     ){
-        return repository.findAllByNameContaining(name);
+        return repository.findAllByNameContainingIgnoreCase(name);
     }
 
 
