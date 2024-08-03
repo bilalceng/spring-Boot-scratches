@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class Person {
+public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,15 +12,17 @@ public class Person {
 
     private String name;
     private Integer age;
+
+    @Column(unique = true)
     private String email;
     private LocalDateTime registerAt;
 
     // Default constructor
-    public Person() {
+    public Student() {
     }
 
     // Parameterized constructor
-    public Person( String name, int age, String email, LocalDateTime registerAt) {
+    public Student(String name, int age, String email, LocalDateTime registerAt) {
         this.name = name;
         this.age = age;
         this.email = email;

@@ -1,6 +1,6 @@
 package com.bilalberek.demo;
 
-import com.bilalberek.demo.model.Person;
+import com.bilalberek.demo.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -41,8 +41,8 @@ public class MyFirstController {
      */
     @PostMapping("/persons")
     @ResponseStatus(HttpStatus.CREATED)
-    public Person saveStudent(
-            @RequestBody Person person
+    public Student saveStudent(
+            @RequestBody Student person
     ){
         return repository.save(person);
     }
@@ -78,7 +78,7 @@ public class MyFirstController {
      */
     @GetMapping("/persons")
     @ResponseStatus(HttpStatus.CREATED)
-    public List<Person> findAllStudents(){
+    public List<Student> findAllStudents(){
         return repository.findAll();
     }
 
@@ -97,10 +97,10 @@ public class MyFirstController {
      */
     @GetMapping("/persons/{student_id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Person findStudentById(
+    public Student findStudentById(
            @PathVariable("student_id") Long id
     ){
-        return repository.findById(id).orElse(new Person());
+        return repository.findById(id).orElse(new Student());
     }
 
 
@@ -134,7 +134,7 @@ public class MyFirstController {
      */
     @GetMapping("/persons/search/{first-name}")
     @ResponseStatus(HttpStatus.CREATED)
-    public List<Person> findStudentById(
+    public List<Student> findStudentById(
             @PathVariable("first-name") String name
     ){
         return repository.findAllByNameContainingIgnoreCase(name);
