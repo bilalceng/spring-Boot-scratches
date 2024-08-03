@@ -1,4 +1,4 @@
-package com.bilalberek.demo;
+package com.bilalberek.demo.repository;
 
 import com.bilalberek.demo.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;

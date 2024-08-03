@@ -17,6 +17,38 @@ public class Student {
     private String email;
     private LocalDateTime registerAt;
 
+    @OneToOne(
+            mappedBy = "student",
+            cascade = CascadeType.ALL
+    )
+    private StudentProfile studentProfile;
+
+    @ManyToOne
+    @JoinColumn(
+            name = "school_id"
+    )
+    private School school;
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public StudentProfile getStudentProfile() {
+        return studentProfile;
+    }
+
+    public void setStudentProfile(StudentProfile studentProfile) {
+        this.studentProfile = studentProfile;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
+
     // Default constructor
     public Student() {
     }

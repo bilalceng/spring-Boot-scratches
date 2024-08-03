@@ -1,6 +1,7 @@
 package com.bilalberek.demo;
 
 import com.bilalberek.demo.model.Student;
+import com.bilalberek.demo.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -8,12 +9,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class MyFirstController {
+public class StudentController {
 
     PersonRepository repository;
 
     @Autowired
-    public MyFirstController(PersonRepository repository){
+    public StudentController(PersonRepository repository){
         this.repository = repository;
     }
 
@@ -39,7 +40,7 @@ public class MyFirstController {
      *     "registerAt": "2024-07-17T12:34:56.789+00:00"
      * }
      */
-    @PostMapping("/persons")
+    @PostMapping("/students")
     @ResponseStatus(HttpStatus.CREATED)
     public Student saveStudent(
             @RequestBody Student person
@@ -76,7 +77,7 @@ public class MyFirstController {
      *
      * ]
      */
-    @GetMapping("/persons")
+    @GetMapping("/students")
     @ResponseStatus(HttpStatus.CREATED)
     public List<Student> findAllStudents(){
         return repository.findAll();
@@ -95,7 +96,7 @@ public class MyFirstController {
      *     "registerAt": "2024-07-17T00:00:00.000+00:00"
      * }
      */
-    @GetMapping("/persons/{student_id}")
+    @GetMapping("/students/{student_id}")
     @ResponseStatus(HttpStatus.CREATED)
     public Student findStudentById(
            @PathVariable("student_id") Long id
@@ -132,7 +133,7 @@ public class MyFirstController {
      *     }
      * ]
      */
-    @GetMapping("/persons/search/{first-name}")
+    @GetMapping("/students/search/{first-name}")
     @ResponseStatus(HttpStatus.CREATED)
     public List<Student> findStudentById(
             @PathVariable("first-name") String name
@@ -141,7 +142,7 @@ public class MyFirstController {
     }
 
 
-    @PostMapping("/persons/{user_id}")
+    @PostMapping("/students/{user_id}")
     @ResponseStatus(HttpStatus.OK)
     public void DeleteByIdStudent(
            @PathVariable("user_id") Long id
