@@ -11,7 +11,7 @@ public class Person {
     private Long id;
 
     private String name;
-    private int age;
+    private Integer age;
     private String email;
     private LocalDateTime registerAt;
 
@@ -20,8 +20,7 @@ public class Person {
     }
 
     // Parameterized constructor
-    public Person(Long id, String name, int age, String email, LocalDateTime registerAt) {
-        this.id = id;
+    public Person( String name, int age, String email, LocalDateTime registerAt) {
         this.name = name;
         this.age = age;
         this.email = email;
