@@ -1,11 +1,19 @@
 package com.bilalberek.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class School {
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @GeneratedValue
     @Id
     private Long id ;
@@ -15,7 +23,8 @@ public class School {
             mappedBy = "school",
             cascade = CascadeType.ALL
     )
-    private List<Student> StudentList;
+    @JsonManagedReference
+    private List<Student> studentList = new ArrayList<>();
 
 
     public String getTitle() {
@@ -27,7 +36,12 @@ public class School {
     }
     public School(String title, List<Student> studentList) {
         this.title = title;
-        StudentList = studentList;
+        studentList = studentList;
+    }
+
+    public void addStudent(Student student){
+        studentList.add(student);
+        student.setSchool(this);
     }
 
     public void setTitle(String title) {
@@ -35,11 +49,14 @@ public class School {
     }
 
     public List<Student> getStudentList() {
-        return StudentList;
+        return studentList;
     }
 
     public void setStudentList(List<Student> studentList) {
-        StudentList = studentList;
+        studentList = studentList;
+    }
+    public Long getId() {
+        return id;
     }
 
 }

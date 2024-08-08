@@ -1,24 +1,21 @@
 package com.bilalberek.demo;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.bilalberek.demo.javaadvancedtopics.DoughType;
+import com.bilalberek.demo.javaadvancedtopics.Pizza;
+import com.bilalberek.demo.javaadvancedtopics.WaterType;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-import java.awt.*;
-import java.util.Collections;
 
 @SpringBootApplication
 public class DemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		Pizza tomatoPizza = new Pizza.Builder(DoughType.CORN , true, WaterType.BOTTLE_WATER )
+				.tomato(true)
+				.pepper(true)
+				.build();
 
-	
+		System.out.println(tomatoPizza);
+
 	}
-
-
 }
-

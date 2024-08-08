@@ -1,5 +1,6 @@
-package com.bilalberek.demo;
+package com.bilalberek.demo.controller;
 
+import com.bilalberek.demo.dto.SchoolDto;
 import com.bilalberek.demo.model.School;
 import com.bilalberek.demo.model.Student;
 import com.bilalberek.demo.repository.SchoolRepository;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequestMapping("/schools")
 @RestController
@@ -22,8 +24,10 @@ public class SchoolController {
     StudentRepository studentRepository;
 
     @GetMapping("/")
-    public List<School> getSchools(){
-       return schoolRepository.findAll();
+    public List<SchoolDto> getSchools(){
+       return schoolRepository.findAll().stream()
+               .map(SchoolDto::toSchoolDto)
+               .collect(Collectors.toList());
     }
 
     @PostMapping("/")

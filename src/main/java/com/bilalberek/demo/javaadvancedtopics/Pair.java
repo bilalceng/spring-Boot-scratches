@@ -1,2 +1,14 @@
-package com.bilalberek.demo.javaadvancedtopics;public interface Pair {
-}
+package com.bilalberek.demo.javaadvancedtopics;
+
+import java.util.function.Function;
+
+interface Pair <K,V> {
+    V getValue();
+    K getKey();
+
+     void setValue(V v);
+     void setKey(K k);
+
+     <R extends Number> R transformValue(Function<V, R> apply);
+    String printAsCoordinate();
+ }

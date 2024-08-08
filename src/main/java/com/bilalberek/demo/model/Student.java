@@ -1,5 +1,8 @@
 package com.bilalberek.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -11,6 +14,7 @@ public class Student {
     private Long id;
 
     private String name;
+
     private Integer age;
 
     @Column(unique = true)
@@ -18,15 +22,16 @@ public class Student {
     private LocalDateTime registerAt;
 
     @OneToOne(
-            mappedBy = "student",
-            cascade = CascadeType.ALL
+            mappedBy = "student"
     )
+    @JsonManagedReference
     private StudentProfile studentProfile;
 
     @ManyToOne
     @JoinColumn(
             name = "school_id"
     )
+    @JsonBackReference
     private School school;
 
     public void setAge(Integer age) {
@@ -38,7 +43,8 @@ public class Student {
     }
 
     public void setStudentProfile(StudentProfile studentProfile) {
-        this.studentProfile = studentProfile;
+       this.studentProfile = studentProfile;
+        studentProfile.setStudent(this);
     }
 
     public School getSchool() {
@@ -54,7 +60,7 @@ public class Student {
     }
 
     // Parameterized constructor
-    public Student(String name, int age, String email, LocalDateTime registerAt) {
+    public Student(String name, Integer age, String email, LocalDateTime registerAt) {
         this.name = name;
         this.age = age;
         this.email = email;
@@ -78,12 +84,8 @@ public class Student {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public String getEmail() {

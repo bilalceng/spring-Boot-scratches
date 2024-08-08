@@ -1,5 +1,7 @@
-package com.bilalberek.demo;
+package com.bilalberek.demo.controller;
 
+import com.bilalberek.demo.dto.StudentDto;
+import com.bilalberek.demo.dto.StudentResponseDto;
 import com.bilalberek.demo.model.Student;
 import com.bilalberek.demo.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,11 +44,13 @@ public class StudentController {
      */
     @PostMapping("/students")
     @ResponseStatus(HttpStatus.CREATED)
-    public Student saveStudent(
-            @RequestBody Student student
+    public StudentResponseDto saveStudent(
+            @RequestBody StudentDto studentDto
     ){
-        return studentRepository.save(student);
+        Student savedStudent =  studentRepository.save(studentDto.toStudent());
+        return StudentResponseDto.toStudentDto(savedStudent);
     }
+
 
 
     /**
