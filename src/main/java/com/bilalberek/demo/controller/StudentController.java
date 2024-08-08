@@ -4,6 +4,7 @@ import com.bilalberek.demo.dto.StudentDto;
 import com.bilalberek.demo.dto.StudentResponseDto;
 import com.bilalberek.demo.model.Student;
 import com.bilalberek.demo.repository.StudentRepository;
+import com.bilalberek.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +14,11 @@ import java.util.List;
 @RestController
 public class StudentController {
 
-    StudentRepository studentRepository;
+    StudentService studentService;
 
     @Autowired
-    public StudentController(StudentRepository repository){
-        this.studentRepository = repository;
+    public StudentController(StudentService studentService){
+        this.studentService = studentService;
     }
 
 
@@ -47,8 +48,7 @@ public class StudentController {
     public StudentResponseDto saveStudent(
             @RequestBody StudentDto studentDto
     ){
-        Student savedStudent =  studentRepository.save(studentDto.toStudent());
-        return StudentResponseDto.toStudentDto(savedStudent);
+        return studentService.saveStudent(studentDto) ;
     }
 
 
@@ -84,7 +84,7 @@ public class StudentController {
     @GetMapping("/students")
     @ResponseStatus(HttpStatus.CREATED)
     public List<Student> findAllStudents(){
-        return studentRepository.findAll();
+        return studentService.findAllStudents();
     }
 
 
@@ -105,7 +105,7 @@ public class StudentController {
     public Student findStudentById(
            @PathVariable("student_id") Long id
     ){
-        return studentRepository.findById(id).orElse(new Student());
+        return studentService.findStudentById(id);
     }
 
 
@@ -139,19 +139,19 @@ public class StudentController {
      */
     @GetMapping("/students/search/{first-name}")
     @ResponseStatus(HttpStatus.CREATED)
-    public List<Student> findStudentById(
+    public List<Student> findStudentByName(
             @PathVariable("first-name") String name
     ){
-        return studentRepository.findAllByNameContainingIgnoreCase(name);
+        return studentService.findStudentByName(name);
     }
 
 
     @PostMapping("/students/{student_id}")
     @ResponseStatus(HttpStatus.OK)
-    public void DeleteByIdStudent(
+    public void deleteStudentById(
            @PathVariable("student_id") Long id
     ){
-        studentRepository.deleteById(id);
+        studentService.de(id);
     }
 
 }
