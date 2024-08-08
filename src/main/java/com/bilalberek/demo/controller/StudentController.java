@@ -1,7 +1,7 @@
 package com.bilalberek.demo;
 
 import com.bilalberek.demo.model.Student;
-import com.bilalberek.demo.repository.PersonRepository;
+import com.bilalberek.demo.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +11,11 @@ import java.util.List;
 @RestController
 public class StudentController {
 
-    PersonRepository repository;
+    StudentRepository studentRepository;
 
     @Autowired
-    public StudentController(PersonRepository repository){
-        this.repository = repository;
+    public StudentController(StudentRepository repository){
+        this.studentRepository = repository;
     }
 
 
@@ -43,9 +43,9 @@ public class StudentController {
     @PostMapping("/students")
     @ResponseStatus(HttpStatus.CREATED)
     public Student saveStudent(
-            @RequestBody Student person
+            @RequestBody Student student
     ){
-        return repository.save(person);
+        return studentRepository.save(student);
     }
 
 
@@ -80,7 +80,7 @@ public class StudentController {
     @GetMapping("/students")
     @ResponseStatus(HttpStatus.CREATED)
     public List<Student> findAllStudents(){
-        return repository.findAll();
+        return studentRepository.findAll();
     }
 
 
@@ -101,7 +101,7 @@ public class StudentController {
     public Student findStudentById(
            @PathVariable("student_id") Long id
     ){
-        return repository.findById(id).orElse(new Student());
+        return studentRepository.findById(id).orElse(new Student());
     }
 
 
@@ -138,17 +138,16 @@ public class StudentController {
     public List<Student> findStudentById(
             @PathVariable("first-name") String name
     ){
-        return repository.findAllByNameContainingIgnoreCase(name);
+        return studentRepository.findAllByNameContainingIgnoreCase(name);
     }
 
 
-    @PostMapping("/students/{user_id}")
+    @PostMapping("/students/{student_id}")
     @ResponseStatus(HttpStatus.OK)
     public void DeleteByIdStudent(
-           @PathVariable("user_id") Long id
+           @PathVariable("student_id") Long id
     ){
-        repository.deleteById(id);
+        studentRepository.deleteById(id);
     }
-
 
 }
