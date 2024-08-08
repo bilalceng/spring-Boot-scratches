@@ -83,7 +83,7 @@ public class StudentController {
      */
     @GetMapping("/students")
     @ResponseStatus(HttpStatus.CREATED)
-    public List<Student> findAllStudents(){
+    public List<StudentResponseDto> findAllStudents(){
         return studentService.findAllStudents();
     }
 
@@ -102,7 +102,7 @@ public class StudentController {
      */
     @GetMapping("/students/{student_id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Student findStudentById(
+    public StudentResponseDto findStudentById(
            @PathVariable("student_id") Long id
     ){
         return studentService.findStudentById(id);
@@ -139,7 +139,7 @@ public class StudentController {
      */
     @GetMapping("/students/search/{first-name}")
     @ResponseStatus(HttpStatus.CREATED)
-    public List<Student> findStudentByName(
+    public List<StudentResponseDto> findStudentByName(
             @PathVariable("first-name") String name
     ){
         return studentService.findStudentByName(name);
@@ -151,7 +151,7 @@ public class StudentController {
     public void deleteStudentById(
            @PathVariable("student_id") Long id
     ){
-        studentService.de(id);
+        studentService.deleteStudentById(id);
     }
 
 }

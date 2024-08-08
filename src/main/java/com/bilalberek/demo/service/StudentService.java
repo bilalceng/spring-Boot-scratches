@@ -3,14 +3,11 @@ package com.bilalberek.demo.service;
 import com.bilalberek.demo.dto.StudentDto;
 import com.bilalberek.demo.dto.StudentResponseDto;
 import com.bilalberek.demo.model.Student;
-import com.bilalberek.demo.repository.SchoolRepository;
 import com.bilalberek.demo.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
@@ -29,20 +26,29 @@ public class StudentService {
         return StudentResponseDto.toStudentDto(savedStudent);
     }
 
-    public List<Student> findAllStudents(){
-        return studentRepository.findAll();
+    public List<StudentResponseDto> findAllStudents(){
+        List<Student>  obtainedStudents = studentRepository.findAll();
+        return obtainedStudents
+                .stream()
+                .map(StudentResponseDto::toStudentDto)
+                .collect(Collectors.toList());
     }
 
-    public Student findStudentById(
+    public StudentResponseDto findStudentById(
             Long id
     ){
-        return studentRepository.findById(id).orElse(new Student());
+        Student obtainedStudent = studentRepository.findById(id).orElse(new Student());
+        return StudentResponseDto.toStudentDto(obtainedStudent);
     }
 
-    public List<Student> findStudentByName(
+    public List<StudentResponseDto> findStudentByName(
              String name
     ){
-        return studentRepository.findAllByNameContainingIgnoreCase(name);
+         List<Student> obtainedStudentByName = studentRepository.findAllByNameContainingIgnoreCase(name);
+         return obtainedStudentByName
+                 .stream()
+                 .map(StudentResponseDto::toStudentDto)
+                 .collect(Collectors.toList());
     }
 
     public void deleteStudentById(
