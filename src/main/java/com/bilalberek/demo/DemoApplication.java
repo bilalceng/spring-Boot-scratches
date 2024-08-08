@@ -1,8 +1,6 @@
 package com.bilalberek.demo;
 
-import com.bilalberek.demo.javaadvancedtopics.DoughType;
-import com.bilalberek.demo.javaadvancedtopics.Pizza;
-import com.bilalberek.demo.javaadvancedtopics.WaterType;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
