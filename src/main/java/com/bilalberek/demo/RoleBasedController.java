@@ -1,5 +1,6 @@
 package com.bilalberek.demo;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,17 +9,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class RoleBasedController {
 
     @GetMapping("/admin")
-    public String adminEndpoint() {
-        return "Hello, Admin!";
+    public ResponseEntity<String> adminEndpoint() {
+        return  ResponseEntity.ok("welcome admin page");
     }
 
     @GetMapping("/seller")
-    public String sellerEndpoint() {
-        return "Hello, Seller!";
+    public ResponseEntity<String> sellerEndpoint() {
+        return  ResponseEntity.ok("welcome seller page");
     }
 
     @GetMapping("/customer")
-    public String customerEndpoint() {
-        return "Hello, Customer!";
+    public ResponseEntity<String> customerEndpoint() {
+        return ResponseEntity.ok("welcome customer page");
     }
 }
