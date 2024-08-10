@@ -1,12 +1,11 @@
-package com.bilalberek.demo.javaadvancedtopics;
-
+package com.bilalberek.demo.javaadvancedtopics.builderdesignpattern;
 
 
 public class Pizza{
-    private final  DoughType dough;
+    private final DoughType dough;
     private final Boolean salt;
-    private final  WaterType water;
-    private final  ThicknessType thickness;
+    private final WaterType water;
+    private final ThicknessType thickness;
     private final Boolean sausage;
     private final Boolean tomato;
     private final  Boolean corn;

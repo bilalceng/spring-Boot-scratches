@@ -1,17 +1,17 @@
-package com.bilalberek.demo.javaadvancedtopics;
+package com.bilalberek.demo.javaadvancedtopics.templates;
+
+import com.bilalberek.demo.javaadvancedtopics.templates.Pair;
 
 import java.util.function.Function;
 
-public class PairIntegerWithDescriptionImp implements PairWithDescription<Integer,Integer,String>{
+public class PairIntegerImp implements Pair<Integer,Integer> {
 
     private Integer key;
     private Integer value;
-    private String description;
 
-    public PairIntegerWithDescriptionImp(Integer key, Integer value, String description ){
+    public PairIntegerImp(Integer key , Integer value){
         this.key = key;
         this.value = value;
-        this.description = description;
     }
     @Override
     public Integer getKey() {
@@ -19,13 +19,8 @@ public class PairIntegerWithDescriptionImp implements PairWithDescription<Intege
     }
 
     @Override
-    public String getDescription() {
-        return description;
-    }
-
-    @Override
     public void setValue(Integer integer) {
-        this.value = value;
+            this.value = value;
     }
 
     @Override

@@ -5,6 +5,7 @@ import com.bilalberek.demo.dto.StudentResponseDto;
 import com.bilalberek.demo.model.Student;
 import com.bilalberek.demo.repository.StudentRepository;
 import com.bilalberek.demo.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +47,7 @@ public class StudentController {
     @PostMapping("/students")
     @ResponseStatus(HttpStatus.CREATED)
     public StudentResponseDto saveStudent(
-            @RequestBody StudentDto studentDto
+            @RequestBody @Valid StudentDto studentDto
     ){
         return studentService.saveStudent(studentDto) ;
     }

@@ -8,11 +8,4 @@ public record StudentResponseDto(
         Long schoolId
 ) {
 
-    public static StudentResponseDto toStudentDto(Student student){
-        return new StudentResponseDto(
-                student.getName(),
-                student.getEmail(),
-                student.getSchool() != null ? student.getSchool().getId() : null
-        );
-    }
 }

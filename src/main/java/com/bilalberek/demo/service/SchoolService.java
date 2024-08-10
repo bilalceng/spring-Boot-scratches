@@ -1,6 +1,7 @@
 package com.bilalberek.demo.service;
 
 import com.bilalberek.demo.dto.SchoolDto;
+import com.bilalberek.demo.mapper.SchoolMapper;
 import com.bilalberek.demo.model.School;
 import com.bilalberek.demo.model.Student;
 import com.bilalberek.demo.repository.SchoolRepository;
@@ -23,23 +24,26 @@ public class SchoolService {
 
     StudentRepository studentRepository;
 
+    SchoolMapper schoolMapper;
+
     @Autowired
-    public SchoolService(SchoolRepository schoolRepository, StudentRepository studentRepository){
+    public SchoolService(SchoolRepository schoolRepository, StudentRepository studentRepository, SchoolMapper schoolMapper){
         this.schoolRepository = schoolRepository;
         this.studentRepository = studentRepository;
+        this.schoolMapper = schoolMapper;
     }
 
 
     public List<SchoolDto> getSchools(){
         return schoolRepository.findAll().stream()
-                .map(SchoolDto::toSchoolDto)
+                .map(SchoolMapper::toSchoolDto)
                 .collect(Collectors.toList());
     }
 
 
     public SchoolDto saveSchool(School school){
         School savedSchool = schoolRepository.save(school);
-        return SchoolDto.toSchoolDto(savedSchool);
+        return SchoolMapper.toSchoolDto(savedSchool);
     }
 
 
@@ -70,6 +74,6 @@ public class SchoolService {
 
     public SchoolDto getSchool(Long schoolId){
         School savedSchool = schoolRepository.findById(schoolId).orElse(new School());
-        return SchoolDto.toSchoolDto(savedSchool);
+        return SchoolMapper.toSchoolDto(savedSchool);
     }
 }
