@@ -60,11 +60,19 @@ public class Student {
     }
 
     // Parameterized constructor
-    public Student(String name, Integer age, String email, LocalDateTime registerAt) {
+    public Student(Long id, String name, Integer age, String email, LocalDateTime registerAt) {
         this.name = name;
         this.age = age;
         this.email = email;
         this.registerAt = registerAt;
+        this.id = id;
+    }
+    public Student( String name, Integer age, String email, LocalDateTime registerAt) {
+        this.name = name;
+        this.age = age;
+        this.email = email;
+        this.registerAt = registerAt;
+
     }
 
     // Getters and Setters
