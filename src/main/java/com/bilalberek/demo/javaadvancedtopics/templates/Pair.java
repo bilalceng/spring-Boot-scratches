@@ -1,4 +1,4 @@
-package com.bilalberek.demo.javaadvancedtopics;
+package com.bilalberek.demo.javaadvancedtopics.templates;
 
 import java.util.function.Function;
 

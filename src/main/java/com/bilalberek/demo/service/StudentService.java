@@ -2,6 +2,7 @@ package com.bilalberek.demo.service;
 
 import com.bilalberek.demo.dto.StudentDto;
 import com.bilalberek.demo.dto.StudentResponseDto;
+import com.bilalberek.demo.mapper.StudentMapper;
 import com.bilalberek.demo.model.Student;
 import com.bilalberek.demo.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,26 +12,27 @@ import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
-
     StudentRepository studentRepository;
+    StudentMapper studentMapper;
 
     @Autowired
-    public StudentService(StudentRepository studentRepository){
+    public StudentService(StudentRepository studentRepository ,StudentMapper studentMapper){
         this.studentRepository = studentRepository;
+        this.studentMapper = studentMapper;
     }
 
     public StudentResponseDto saveStudent(
              StudentDto studentDto
     ){
-        Student savedStudent =  studentRepository.save(studentDto.toStudent());
-        return StudentResponseDto.toStudentDto(savedStudent);
+        Student savedStudent =  studentRepository.save(studentMapper.toStudent(studentDto));
+        return studentMapper.toStudentDto(savedStudent);
     }
 
     public List<StudentResponseDto> findAllStudents(){
         List<Student>  obtainedStudents = studentRepository.findAll();
         return obtainedStudents
                 .stream()
-                .map(StudentResponseDto::toStudentDto)
+                .map(studentMapper::toStudentDto)
                 .collect(Collectors.toList());
     }
 
@@ -38,7 +40,7 @@ public class StudentService {
             Long id
     ){
         Student obtainedStudent = studentRepository.findById(id).orElse(new Student());
-        return StudentResponseDto.toStudentDto(obtainedStudent);
+        return studentMapper.toStudentDto(obtainedStudent);
     }
 
     public List<StudentResponseDto> findStudentByName(
@@ -47,7 +49,7 @@ public class StudentService {
          List<Student> obtainedStudentByName = studentRepository.findAllByNameContainingIgnoreCase(name);
          return obtainedStudentByName
                  .stream()
-                 .map(StudentResponseDto::toStudentDto)
+                 .map(studentMapper::toStudentDto)
                  .collect(Collectors.toList());
     }
 
