@@ -14,6 +14,8 @@ public class StudentMapper {
         Student student = new Student();
         School school = new School();
 
+
+
         student.setName(studentDto.name());
         student.setEmail(studentDto.email());
         school.setId(studentDto.schoolId());
@@ -24,6 +26,9 @@ public class StudentMapper {
 
 
     public  StudentResponseDto toStudentDto(Student student){
+        if (student == null){
+            throw new IllegalArgumentException("the student response is null");
+        }
         return new StudentResponseDto(
                 student.getName(),
                 student.getEmail(),
